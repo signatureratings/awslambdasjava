@@ -1,0 +1,26 @@
+service: iperkz-lambdas
+
+provider:
+  name: aws
+  runtime: java17
+  timeout: 10
+
+package:
+  artifact: target/Iperkz-1.0.0-aws.jar
+
+functions:
+  Hello:
+    handler: com.appisoft.iperkz.Handlers.HelloHandler
+    events:
+      - http:
+          path: api/hello
+          method: get
+
+  goodbye:
+    handler: com.appisoft.iperkz.Handlers.ByeHandler
+    events:
+      - http:
+          path: api/goodbye
+          method: get
+    environment:
+      FUNCTION_NAME: goodbye
